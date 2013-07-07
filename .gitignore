@@ -8,7 +8,5 @@
 *.so
 
 # Release and Debug Folders #
-DeepSpace\Release
-DeepSpace\Debug
-DeepSpace\DeepSpace\Release
-DeepSpace\DeepSpace\Debug
+deepspace-ubuntu/Release
+deepspace-ubuntu/Debug

@@ -36,12 +36,12 @@
 									<listOptionValue builtIn="false" value="GLEW"/>
 									<listOptionValue builtIn="false" value="GLU"/>
 									<listOptionValue builtIn="false" value="GL"/>
-									<listOptionValue builtIn="false" value="SOIL"/>
-									<listOptionValue builtIn="false" value="/usr/lib/libSOIL.so"/>
 									<listOptionValue builtIn="false" value="glfw"/>
+									<listOptionValue builtIn="false" value="SOIL"/>
 								</option>
 								<option id="gnu.cpp.link.option.paths.339344032" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
 									<listOptionValue builtIn="false" value="/usr/local/lib"/>
+									<listOptionValue builtIn="false" value="/usr/lib64"/>
 									<listOptionValue builtIn="false" value="/usr/lib"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.973016495" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
@@ -80,10 +80,10 @@
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
 	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
 	<storageModule moduleId="refreshScope" versionNumber="2">
-		<configuration configurationName="Release">
+		<configuration configurationName="Default">
 			<resource resourceType="PROJECT" workspacePath="/deepspace-ubuntu"/>
 		</configuration>
-		<configuration configurationName="Default">
+		<configuration configurationName="Release">
 			<resource resourceType="PROJECT" workspacePath="/deepspace-ubuntu"/>
 		</configuration>
 	</storageModule>
