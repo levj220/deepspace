@@ -6,6 +6,11 @@
 *.exe
 *.o
 *.so
+*.cproject
+
+# Backup files #
+###################
+*~
 
 # Release and Debug Folders #
 deepspace-ubuntu/Release
