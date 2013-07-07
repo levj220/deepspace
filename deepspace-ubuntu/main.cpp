@@ -22,7 +22,7 @@ glm::mat4 projMatrix;
 glm::mat4 mVPMatrix;
 
 Mesh *m;
-float rx=0, ry=0, rz=0;
+float rx = 0, ry = 0, rz = 0;
 //To move in accordance with time, not frame rate
 float elapsed = 0;
 
@@ -35,8 +35,6 @@ void draw(void);
 void onKeyPress(GLFWwindow* window, int key, int scancode, int action,
 		int mods);
 
-
-
 void resize(GLFWwindow *window, int width, int height)
 {
 	glViewport(0, 0, width, height);
@@ -48,13 +46,13 @@ void onKeyPress(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 	static int mode = GL_FILL;
 
-    if (key == GLFW_KEY_M && action == GLFW_PRESS)
-    {
-		if(mode == GL_FILL)
+	if (key == GLFW_KEY_M && action == GLFW_PRESS)
+	{
+		if (mode == GL_FILL)
 		{
 			mode = GL_POINT;
 		}
-		else if(mode == GL_POINT)
+		else if (mode == GL_POINT)
 		{
 			mode = GL_LINE;
 		}
@@ -63,25 +61,25 @@ void onKeyPress(GLFWwindow* window, int key, int scancode, int action, int mods)
 			mode = GL_FILL;
 		}
 		glPolygonMode(GL_FRONT_AND_BACK, mode);
-    }
-	else if(key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+	}
+	else if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 	{
 		glfwSetWindowShouldClose(window, GL_TRUE);
 	}
 
-	if(key == GLFW_KEY_LEFT)
+	if (key == GLFW_KEY_LEFT)
 	{
 		ry += elapsed * 20;
 	}
-	else if(key == GLFW_KEY_RIGHT)
+	else if (key == GLFW_KEY_RIGHT)
 	{
 		ry -= elapsed * 20;
 	}
-	else if(key == GLFW_KEY_UP)
+	else if (key == GLFW_KEY_UP)
 	{
 		rx += elapsed * 20;
 	}
-	else if(key == GLFW_KEY_DOWN)
+	else if (key == GLFW_KEY_DOWN)
 	{
 		rx -= elapsed * 20;
 	}
@@ -97,13 +95,15 @@ int main(void)
 		return -1;
 	}
 
+	glfwWindowHint(GLFW_STENCIL_BITS, 1);
+	glfwDefaultWindowHints();
 	const GLFWvidmode *mode;
 	GLFWmonitor *monitor = glfwGetPrimaryMonitor();
 	mode = glfwGetVideoMode(monitor);
 
 	/* Create a windowed mode window and its OpenGL context */
 	window = glfwCreateWindow(mode->width, mode->height, "DeepSpace", NULL,
-			NULL);
+	NULL);
 	if (!window)
 	{
 		glfwTerminate();
@@ -122,6 +122,10 @@ int main(void)
 		return -1;
 	}
 
+	int l = 0;
+	glGetIntegerv(GL_ACCUM_ALPHA_BITS, &l);
+	printf("Depth: %d\n", l);
+
 	//Set up our OpenGL world*/
 	initialize(window);
 
@@ -135,7 +139,6 @@ int main(void)
 		double currentTime = glfwGetTime();
 		update(currentTime - oldTime);
 		oldTime = currentTime;
-
 		/* Render here */
 		draw();
 
@@ -188,14 +191,14 @@ void initialize(GLFWwindow *window)
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	//Create one time objects
-    m = new Mesh(150);
+	m = new Mesh(150);
 }
 
 //All updating should be done here
 void update(double millis)
 {
 	//Store the elapsed time so we can use it for key presses
-    elapsed = (float)millis;
+	elapsed = (float) millis;
 }
 
 void destroy()
@@ -207,18 +210,18 @@ void draw(void)
 {
 	if (glfwGetTime() - fpsTimer > 1.0)
 	{
-		printf("FPS: %d\n", fps);
+		//printf("FPS: %d\n", fps);
 		fps = 0;
 		fpsTimer = glfwGetTime();
 	}
 
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    modelMatrix = glm::mat4();
-    modelMatrix = glm::rotate(modelMatrix, rx, glm::vec3(1.0f, 0.0f, 0.0f));
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	modelMatrix = glm::mat4();
+	modelMatrix = glm::rotate(modelMatrix, rx, glm::vec3(1.0f, 0.0f, 0.0f));
 	modelMatrix = glm::rotate(modelMatrix, ry, glm::vec3(0.0f, 1.0f, 0.0f));
 	modelMatrix = glm::rotate(modelMatrix, rz, glm::vec3(0.0f, 0.0f, 1.0f));
-    m->draw(modelMatrix, viewMatrix, projMatrix);
+	m->draw(modelMatrix, viewMatrix, projMatrix);
 
-    fps++;
+	fps++;
 }
 
