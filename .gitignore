@@ -6,7 +6,11 @@
 *.exe
 *.o
 *.so
+
+# Build dependent project settings #
+###################
 *.cproject
+*.project
 
 # Backup files #
 ###################
@@ -14,4 +18,5 @@
 
 # Release and Debug Folders #
 deepspace-ubuntu/Release
+deepspace-ubuntu/.settings
 deepspace-ubuntu/Debug
